@@ -1,0 +1,20 @@
+---
+- hosts: webservers
+  sudo: yes
+
+  tasks:
+  - name: Ensure that Apache is installed.
+    yum: name=httpd state=present
+
+  - name: Start Apache Service.
+    service: name=httpd enabled=yes state=started
+
+  - name: Deploy index page.
+    copy: src=helloworld.html dest=/var/www/html/index.html backup=yes
+
+#- hosts: webservers
+#  sudo: yes
+
+#  tasks:
+ # - name: Stop Iptables.
+  #  service: name=iptables state=stopped
